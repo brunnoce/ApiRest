@@ -1,0 +1,25 @@
+{
+  "name": "node-template",
+  "version": "1.0.0",
+  "description": "Template Nodejs + TypeScript",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch --clear-screen=false src/app.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "tsx": "^4.19.3",
+    "typescript": "^5.3.3"
+  }
+}
