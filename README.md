@@ -1,60 +1,122 @@
-# 🧪 Node.js + TypeScript Base API
+# 📚 ApiRest
 
-Plantilla base para crear APIs con Node.js y TypeScript, con soporte para recarga en desarrollo, alias, rutas organizadas y preparación para producción.
+API RESTful construida con **Node.js**, **TypeScript**, **Express** y **MongoDB**.
 
----
-
-## 🔥 IDEAL PARA:
-
-    APIs REST
-
-    Backends para login / autenticación
-
-    Proyectos conectados a bases de datos
-
-    Aplicaciones Express escalables
+Proyecto desarrollado como práctica de arquitectura de APIs modernas, utilizando controladores, servicios, middlewares y control de errores de forma organizada.
 
 ---
 
-## 🚀 Tecnologías utilizadas
+## 🚀 Tecnologías principales
 
-- **Node.js**
-- **TypeScript**
-- **Express**
-- **ts-node-dev** (para desarrollo con hot reload)
-- **tsconfig-paths** (para usar aliases como `@/`)
-- **dotenv** (manejo de variables de entorno)
-- **cors** (CORS para APIs públicas o frontend separado)
-
----
-
-## 📝 Notas
-
-El archivo tsconfig.json está configurado para usar @/ como alias de src/.
-
-El código fuente debe ir dentro de la carpeta src/.
-
-El código compilado irá a dist/ al correr npm run build.
+- [Node.js](https://nodejs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Express](https://expressjs.com/)
+- [MongoDB + Mongoose](https://mongoosejs.com/)
+- [dotenv](https://www.npmjs.com/package/dotenv) (manejo de variables de entorno)
+- [bcrypt](https://www.npmjs.com/package/bcrypt) (encriptado de passwords)
+- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) (JWT para autenticación)
 
 ---
 
-## 🛠️ Scripts disponibles
+## 🛠 Estructura del proyecto
 
-| Comando        | Descripción                                                      |
-|----------------|------------------------------------------------------------------|
-| `npm run dev`  | Inicia el proyecto en modo desarrollo con recarga automática     |
-| `npm run build`| Compila TypeScript a JavaScript dentro de la carpeta `dist/`     |
-| `npm start`    | Ejecuta el código compilado (modo producción)                    |
-| `npm run clean`| Elimina la carpeta `dist/` para limpiar el proyecto              |
-
-> 🪟 En Windows, el comando `clean` puede requerir reemplazar `rm -rf` por `rmdir /s /q dist`
+<pre>
+src/
+│
+├── controllers/     # Lógica de controladores (manejan las rutas)
+├── services/        # Lógica de negocio (servicios para DB)
+├── models/          # Modelos de Mongoose
+├── routes/          # Definición de endpoints
+├── middlewares/     # Middlewares personalizados
+├── utils/           # Utilidades (manejo de errores, JWT, etc.)
+├── config/          # Configuración (MongoDB, otros)
+├── interfaces/      # Definición de tipos/interfaces TypeScript
+├── server/          # Encendido del servidor Express
+└── app.ts           # Archivo principal de la app
+</pre>
 
 ---
 
-## 🔧 Instalación
+## 🛡 Funcionalidades actuales
+
+- CRUD de ítems (modelo de autos como ejemplo).
+- Manejo de errores centralizado.
+- Tokenización JWT para autenticación (en proceso de expansión).
+- Validaciones iniciales.
+- Arquitectura escalable (controladores, servicios, modelos separados).
+
+---
+
+## ✏ Ejemplos de endpoints 
+
+### /item: CRUD de ítems (autos).
+
+Método | Ruta | Descripción | Cuerpo requerido
+GET | /item | Obtener todos los ítems | No
+GET | /item/:id | Obtener un ítem por su ID | No
+POST | /item | Crear un nuevo ítem | Sí (JSON)
+PUT | /item/:id | Actualizar un ítem por su ID | Sí (JSON)
+DELETE | /item/:id | Eliminar un ítem por su ID | No
+
+Ejemplo de cuerpo para POST o PUT:
+```bash
+{
+  "name": "Fiat",
+  "color": "Black",
+  "gas": "gasoline",
+  "year": 2020,
+  "description": "Brand new",
+  "price": 3000
+}
+```
+
+### /auth: Registro y login de usuarios.
+
+Método | Ruta | Descripción | Cuerpo requerido
+POST | /auth/register | Registrar un nuevo usuario | Sí (JSON)
+POST | /auth/login | Iniciar sesión de usuario | Sí (JSON)
+
+Ejemplo de cuerpo para registro (/auth/register):
+```bash
+{
+  "name": "Bruno",
+  "email": "bruno@example.com",
+  "password": "123456"
+}
+```
+
+Ejemplo de cuerpo para login (/auth/login):
+```bash
+{
+  "email": "bruno@example.com",
+  "password": "123456"
+}
+```
+
+### /order: Consultar las órdenes del usuario autenticado.
+
+Método | Ruta | Descripción | Cuerpo requerido
+GET | /order | Obtener órdenes del usuario autenticado | No
+
+Authorization: Bearer <tu_token>
+
+---
+## 📦 Instalación
 
 ```bash
-git clone https://github.com/brunnoce/base-node-ts
-cd base-node-ts
+git clone https://github.com/brunnoce/ApiRest.git
+cd ApiRest
 npm install
+```
+Crear .env con
+
+```bash
+PORT=3000
+MONGODB_URL_STRING=mongodb://localhost:27017/apirest-2
+JWT_SECRET=tu_secreto_aqui
+```
+
+Finalmente
+```bash
 npm run dev
+```
