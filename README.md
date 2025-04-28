@@ -51,15 +51,16 @@ src/
 
 ### /item: CRUD de ítems (autos).
 
-Método | Ruta | Descripción | Cuerpo requerido
-GET | /item | Obtener todos los ítems | No
-GET | /item/:id | Obtener un ítem por su ID | No
-POST | /item | Crear un nuevo ítem | Sí (JSON)
-PUT | /item/:id | Actualizar un ítem por su ID | Sí (JSON)
-DELETE | /item/:id | Eliminar un ítem por su ID | No
+Método | Ruta         | Descripción              | Cuerpo requerido
+:------|:------------:|:------------------------:|:----------------:
+GET    | /item        | Obtener todos los ítems  | No
+GET    | /item/:id    | Obtener un ítem por ID   | No
+POST   | /item        | Crear un nuevo ítem      | Sí (JSON)
+PUT    | /item/:id    | Actualizar un ítem por ID| Sí (JSON)
+DELETE | /item/:id    | Eliminar un ítem por ID  | No
 
 Ejemplo de cuerpo para POST o PUT:
-```bash
+```json
 {
   "name": "Fiat",
   "color": "Black",
@@ -72,12 +73,14 @@ Ejemplo de cuerpo para POST o PUT:
 
 ### /auth: Registro y login de usuarios.
 
-Método | Ruta | Descripción | Cuerpo requerido
-POST | /auth/register | Registrar un nuevo usuario | Sí (JSON)
-POST | /auth/login | Iniciar sesión de usuario | Sí (JSON)
+Método | Ruta               | Descripción                  | Cuerpo requerido
+:------|:------------------:|:----------------------------:|:----------------:
+POST   | /auth/register     | Registrar nuevo usuario      | Sí (JSON)
+POST   | /auth/login        | Iniciar sesión de usuario    | Sí (JSON)
+
 
 Ejemplo de cuerpo para registro (/auth/register):
-```bash
+```json
 {
   "name": "Bruno",
   "email": "bruno@example.com",
@@ -86,7 +89,7 @@ Ejemplo de cuerpo para registro (/auth/register):
 ```
 
 Ejemplo de cuerpo para login (/auth/login):
-```bash
+```json
 {
   "email": "bruno@example.com",
   "password": "123456"
@@ -95,8 +98,9 @@ Ejemplo de cuerpo para login (/auth/login):
 
 ### /order: Consultar las órdenes del usuario autenticado.
 
-Método | Ruta | Descripción | Cuerpo requerido
-GET | /order | Obtener órdenes del usuario autenticado | No
+Método | Ruta     | Descripción                             | Cuerpo requerido
+:------|:--------:|:---------------------------------------:|:----------------:
+GET    | /order   | Obtener órdenes del usuario autenticado | No
 
 Authorization: Bearer <tu_token>
 
